@@ -45,9 +45,6 @@ public class CloudFirestore : MonoBehaviour
         var characterData = new CharacterData
         {
             Name = _nameField.text,
-            // Description = _descriptionField.text
-            // Attack = int.Parse(_attackField.text),
-            // Defense = int.Parse(_defenseField.text)
         };
         firestore.Document(_characterPath).SetAsync(characterData).ContinueWithOnMainThread(task =>
         {
@@ -67,9 +64,6 @@ public class CloudFirestore : MonoBehaviour
             Assert.IsNull(task.Exception);
             var characterData = task.Result.ConvertTo<CharacterData>();
             _nameText.text = $"Name: {characterData.Name}";
-            // _descriptionText.text = $"Description: {characterData.Description}";
-            // _attackText.text = $"Attack: {characterData.Attack}";
-            // _defenseText.text = $"Defense: {characterData.Defense}";
             _outLoadingText.text = "Complete ......";
 
         });
@@ -77,21 +71,13 @@ public class CloudFirestore : MonoBehaviour
     public async void GetDataWithScore()
     {
         _outLoadingText.text = "Loading ......";
-
-
-
-
-
-        Debug.Log(555555);
         CollectionReference citiesRef = firestore.Collection("User");
         Query query = citiesRef.OrderByDescending("Score").Limit(10);
-        // Query query = citiesRef.OrderBy("Name");
         QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
         Debug.Log("await");
         Debug.Log("querySnapshot.Documents.count: " + querySnapshot.Count);
         foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
         {
-            // Debug.Log(documentSnapshot.Id);
             var data = documentSnapshot.ConvertTo<CharacterData>();
             Debug.Log("name: " + data.Name + "  Score: " + data.Score + "  TotalTime: " + GetTimeString(data.TotalTime));
         }

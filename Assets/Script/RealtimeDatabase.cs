@@ -42,12 +42,9 @@ public class RealtimeDatabase : MonoBehaviour
     void Start()
     {
         ConditionCol = GetConditionCol();
-        // Debug.Log(ConditionCol);
         ListUser = new List<User>();
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-        // StartCoroutine(GetDataWithScore(false));
         Debug.Log("count: " + ListUser.Count);
-        // GetDataUser("n3J7yDeqOdUQIC8D", "Cao ba quat");
     }
 
     private string GetConditionCol()
@@ -184,19 +181,6 @@ public class RealtimeDatabase : MonoBehaviour
     {
         var dataSnapshot = await reference.Child("User").Child(uid).GetValueAsync();
         return dataSnapshot.Exists;
-        //     .ContinueWithOnMainThread(task =>
-        //   {
-        //       if (task.IsFaulted)
-        //       {
-        //           // Handle the error...
-        //       }
-        //       else if (task.IsCompleted)
-        //       {
-        //           DataSnapshot snapshot = task.Result;
-        //           Debug.Log(snapshot.Value == null);
-        //           // Do something with snapshot...
-        //       }
-        //   });
     }
     public async Task<Player?> LoadPlayer(string uid)
     {

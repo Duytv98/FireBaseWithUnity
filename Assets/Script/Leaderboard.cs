@@ -39,7 +39,6 @@ public class Leaderboard : MonoBehaviour
         else if (levelListHandler == null)
         {
             levelListHandler = new RecyclableListHandler<int>(sttIndicies, itemUserPrefab, listUserContainer, scrollRect);
-            // levelListHandler.OnListItemClicked = OnLevelListItemClicked;
             levelListHandler.Setup();
         }
         else
