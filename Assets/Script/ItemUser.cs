@@ -30,11 +30,9 @@ public class ItemUser : RecyclableListItem<int>
 
     public override void Setup(int index)
     {
-        // Debug.Log("RealtimeDatabase.Instance.ListUser.Count: " + RealtimeDatabase.Instance.ListUser.Count);
         if (index >= RealtimeDatabase.Instance.ListUser.Count) return;
         var conditionCol = RealtimeDatabase.Instance.ConditionCol;
         User user = RealtimeDatabase.Instance.ListUser[index];
-        // background.color = color;
         txtStt.text = (index + 1).ToString();
         txtName.text = user.DisplayName;
 

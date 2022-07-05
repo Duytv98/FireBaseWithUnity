@@ -122,7 +122,6 @@ public class Authentication : MonoBehaviour
 
     public void SignInWithGoogle()
     {
-        Debug.Log("1111111111");
         _loadingText.text = "Loading .......";
         GoogleSignIn.DefaultInstance.SignIn().ContinueWithOnMainThread(OnAuthenticationFinished);
     }
@@ -185,25 +184,18 @@ public class Authentication : MonoBehaviour
 
     private void OnSignOut()
     {
-        // GoogleSignIn.DefaultInstance.SignOut();
-
         auth.SignOut();
         CheckCurrentUser();
         if (index < arrName.Length)
         {
             index++;
             auth.SignOut();
-            // CreateListUser();
         }
     }
 
     private Coroutine _coroutine;
     private void LoginSuccess()
     {
-        // Debug.Log("login success");
-        // var successes = PlayerPrefs.GetInt("Successes", 0);
-        // PlayerPrefs.SetInt("Successes", ++successes);
-        // Debug.Log($"Successes: {successes}");
         StartCoroutine(LoadPlayer());
     }
 
